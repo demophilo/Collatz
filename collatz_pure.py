@@ -57,14 +57,10 @@ def read_unique_dict(path):
 # The operator is defined as 3 times the number and adding the power of 2
 # the original number consists of.
 
-def collatz(_num):
-    #_trailing_zeros = len(_num)-len(_num.rstrip("0"))
-    #_adding_1 = int("0b1" + "0"*_trailing_zeros, 2)
-    #_num = int("0b" + _num, 2)
-    #_num = bin(_num * 3 + adding_1)
-    #_num = str(_num)[2:]
-    _num = str(bin(int("0b" + _num, 2) * 3 + int("0b1" + "0"*(len(_num)-len(_num.rstrip("0"))), 2)))[2:]
-
+def get_next_collatz_number(_num):
+    _string_num = str(_num)
+    _trailing_zeros = len(_string_num) - len(_string_num.rstrip("0"))
+    _num = str(bin(3 * _num + 2 ** _trailing_zeros))[2:]
     return _num
 
 
@@ -74,8 +70,7 @@ def collatz(_num):
 def collatz_sequence_investigation(_num):
     _line = 1
     while _num.count("1") != 1:
-        #_num = collatz(_num)
-        _num = str(bin(int("0b" + _num, 2) * 3 + int("0b1" + "0" * (len(_num) - len(_num.rstrip("0"))), 2)))[2:]
+        _num = get_next_collatz_number(_num)
         _line = _line + 1
 
     _length = len(_num)
@@ -93,7 +88,7 @@ def collatz_picture(_num, _additional_steps=0):
     _pixi = Image.new("1", (_picture_width, _picture_height), "white")
     for _i in range(_picture_height):
         if _i != 0:
-            _num = collatz(_num)
+            _num = get_next_collatz_number(_num)
 
         _total_line = "0" * (_picture_width - len(_num)) + _num
 
@@ -141,8 +136,8 @@ if __name__ == '__main__':
         # exit()
         write_to_pickle(sequence_of_max_every_digit, path_cache)
     else:
-        print("ich will was ausprobieren")
-        print(str(bin(1980976057694878447))[2:])
+        print(get_next_collatz_number(0b101))
+
 
 
 
