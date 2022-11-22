@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[19]:
-
 
 from PIL import Image
 import os, sys
@@ -24,6 +22,7 @@ def write_to_pickle(target, target_path):
     pickle.dump(target, f)
     f.close()
 
+
 def read_unique_dict(path):
     """
     :param skip:
@@ -44,9 +43,10 @@ def read_unique_dict(path):
                 current_objects = current_objects_input[0]
     return current_objects
 
+
 def get_next_collatz_number(_num) -> str:
     _trailing_zeros = len(_num) - len(_num.rstrip("0"))
-    _next_collatz_number = str(bin(3 * int("0b"+_num, 2) + 2 ** _trailing_zeros))[2:]
+    _next_collatz_number = str(bin(3 * int("0b" + _num, 2) + 2 ** _trailing_zeros))[2:]
     return _next_collatz_number
 
 
@@ -59,26 +59,27 @@ def collatz_sequence_investigation(_num):
     _length = len(_num)
     return _line, _length
 
-def collatz_picture(_num, _additional_steps=0):
+
+def create_picture_of_collatz_sequence(_num, _additional_steps=0) -> str:
     _name = _num
     _height, _width = collatz_sequence_investigation(_num)
     _picture_height = _height + _additional_steps
     _picture_width = _width + 2 * _additional_steps
-    _pixi = Image.new("1", (_picture_width, _picture_height), "white")
-    for _i in range(_picture_height):
-        if _i != 0:
+    _picture_of_collatz_sequence = Image.new("1", (_picture_width, _picture_height), "white")
+    for _row in range(_picture_height):
+        if _row != 0:  # first row is the number itself
             _num = get_next_collatz_number(_num)
 
         _total_line = "0" * (_picture_width - len(_num)) + _num
 
-        for _k in range(_picture_width):
-            _pixi.putpixel((_k, _i), 1 * (_total_line[_k] != "1"))
+        for _column in range(_picture_width):
+            _picture_of_collatz_sequence.putpixel((_column, _row), 1 * (_total_line[_column] != "1"))
 
-    _pixi.save(f"Collatz{_name}.bmp")
+    _picture_of_collatz_sequence.save(f"Collatz{_name}.bmp")
 
 
 if __name__ == '__main__':
-    skip = 1
+    skip = 0
 
     if skip == 0:
 
@@ -104,18 +105,11 @@ if __name__ == '__main__':
             for _key, _value in steps_equal_length.items():
                 if _value == maximum_this_digit:
                     print(length, int("0b" + _key, 2), _key, _value)
-                    sequence_of_max_every_digit[length] = {"max-length": maximum_this_digit, "number": _key, "2nd_max": _counter_max_each_digit}
+                    sequence_of_max_every_digit[length] = {"max-length": maximum_this_digit, "number": _key,
+                                                           "2nd_max": _counter_max_each_digit}
                     _counter_max_each_digit = _counter_max_each_digit + 1
 
         print(sequence_of_max_every_digit)
-        # exit()
         write_to_pickle(sequence_of_max_every_digit, path_cache)
     else:
         print(get_next_collatz_number("101"))
-
-
-
-
-
-
-
