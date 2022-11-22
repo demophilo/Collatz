@@ -11,9 +11,6 @@ from os.path import dirname
 import pickle
 
 
-# In[ ]:
-
-
 def write_to_pickle(target, target_path):
     """
     :param target:
@@ -26,10 +23,6 @@ def write_to_pickle(target, target_path):
     f = open(target_path, 'wb')
     pickle.dump(target, f)
     f.close()
-
-
-# In[ ]:
-
 
 def read_unique_dict(path):
     """
@@ -51,20 +44,10 @@ def read_unique_dict(path):
                 current_objects = current_objects_input[0]
     return current_objects
 
-
-# In[20]:
-# Calculates the Collatz-operator of a binary number. Input type is string.
-# The operator is defined as 3 times the number and adding the power of 2
-# the original number consists of.
-
-def get_next_collatz_number(_num):
-    _string_num = str(_num)
-    _trailing_zeros = len(_string_num) - len(_string_num.rstrip("0"))
-    _num = str(bin(3 * _num + 2 ** _trailing_zeros))[2:]
-    return _num
-
-
-# In[21]:
+def get_next_collatz_number(_num) -> str:
+    _trailing_zeros = len(_num) - len(_num.rstrip("0"))
+    _next_collatz_number = str(bin(3 * int("0b"+_num, 2) + 2 ** _trailing_zeros))[2:]
+    return _next_collatz_number
 
 
 def collatz_sequence_investigation(_num):
@@ -75,10 +58,6 @@ def collatz_sequence_investigation(_num):
 
     _length = len(_num)
     return _line, _length
-
-
-
-
 
 def collatz_picture(_num, _additional_steps=0):
     _name = _num
@@ -96,10 +75,6 @@ def collatz_picture(_num, _additional_steps=0):
             _pixi.putpixel((_k, _i), 1 * (_total_line[_k] != "1"))
 
     _pixi.save(f"Collatz{_name}.bmp")
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -136,7 +111,7 @@ if __name__ == '__main__':
         # exit()
         write_to_pickle(sequence_of_max_every_digit, path_cache)
     else:
-        print(get_next_collatz_number(0b101))
+        print(get_next_collatz_number("101"))
 
 
 
