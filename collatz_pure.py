@@ -78,17 +78,11 @@ def create_picture_of_collatz_sequence(_num, _additional_steps=0) -> str:
     _picture_of_collatz_sequence.save(f"Collatz{_name}.bmp")
 
 
-if __name__ == '__main__':
-    skip = 0
-
-    if skip == 0:
-
-        begin_of_sequences = int(input("Beginning:"))
-        end_of_sequences = int(input("Ending:")) + 1
+def make_dict_of_max_collatz_steps_per_digit (begin_of_sequences, end_of_sequences) -> int:
         path_cache = "local_cache_4.pck"
         sequence_of_max_every_digit = read_unique_dict(path_cache)
 
-        for length in range(begin_of_sequences, end_of_sequences):
+        for length in range(begin_of_sequences, end_of_sequences + 1):
             if length in sequence_of_max_every_digit:
                 print(f"Length {length} already calculated and its result is {sequence_of_max_every_digit.get(length)}")
                 continue
@@ -111,5 +105,6 @@ if __name__ == '__main__':
 
         print(sequence_of_max_every_digit)
         write_to_pickle(sequence_of_max_every_digit, path_cache)
-    else:
-        print(get_next_collatz_number("101"))
+
+
+if __name__ == '__main__':
