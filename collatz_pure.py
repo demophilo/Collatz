@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+import time
 
 from PIL import Image
 import os, sys
 from pathlib import Path
 from os.path import dirname
-import pickle
+import pickle as pkl
+import pandas as pd
 
 
 def write_to_pickle(target, target_path):
@@ -19,7 +20,7 @@ def write_to_pickle(target, target_path):
         target_path = str(target_path)
     Path(dirname(target_path)).mkdir(parents=True, exist_ok=True)
     f = open(target_path, 'wb')
-    pickle.dump(target, f)
+    pkl.dump(target, f)
     f.close()
 
 
@@ -36,7 +37,7 @@ def read_unique_dict(path):
             with (open(path, "rb")) as openfile:
                 while True:
                     try:
-                        current_objects_input.append(pickle.load(openfile))
+                        current_objects_input.append(pkl.load(openfile))
                     except EOFError:
                         break
             if isinstance(current_objects_input, list) and len(current_objects_input) > 0:
@@ -48,6 +49,15 @@ def get_next_collatz_number(_num) -> str:
     _trailing_zeros = len(_num) - len(_num.rstrip("0"))
     _next_collatz_number = str(bin(3 * int("0b" + _num, 2) + 2 ** _trailing_zeros))[2:]
     return _next_collatz_number
+
+def get_next_collatz_number_2(_num):
+    _powers_of_2 = 0
+    while (_num % 2 == 0):
+        _num = _num >> 1
+        _powers_of_2 = _powers_of_2 + 1
+    _next_collatz_number = (_num * 3 + 1) << _powers_of_2
+    _collatz_length = len(str(bin(_num))) - 2
+    return _next_collatz_number, _collatz_length
 
 
 def collatz_sequence_investigation(_num):
@@ -90,7 +100,6 @@ def make_dict_of_max_collatz_steps_per_digit (begin_of_sequences, end_of_sequenc
             steps_equal_length = {}
             for j in range(2 ** (length - 2)):
                 num = 2 ** (length - 1) + 2 * j + 1
-                num = str(bin(num))[2:]
                 steps_equal_length[num] = (collatz_sequence_investigation(num)[0])
 
             maximum_this_digit = max(steps_equal_length.values())
@@ -107,4 +116,9 @@ def make_dict_of_max_collatz_steps_per_digit (begin_of_sequences, end_of_sequenc
         write_to_pickle(sequence_of_max_every_digit, path_cache)
 
 
+
 if __name__ == '__main__':
+    start = time.time()
+    make_dict_of_max_collatz_steps_per_digit(2,27)
+    end = time.time()
+    print(end - start)
