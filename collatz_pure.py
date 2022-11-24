@@ -5,7 +5,6 @@ import pickle as pkl
 import time
 from os.path import dirname
 from pathlib import Path
-import numpy as np
 from PIL import Image
 
 
@@ -44,44 +43,62 @@ def read_unique_dict(path):
     return current_objects
 
 
-def get_next_collatz_number(_num) -> str:
-    _trailing_zeros = len(_num) - len(_num.rstrip("0"))
-    _next_collatz_number = str(bin(3 * int("0b" + _num, 2) + 1 << _trailing_zeros))[2:]
-    return _next_collatz_number
-
-def get_next_collatz_number_2(_num):
-    _powers_of_2 = 0
+def get_power_of_two(_num):
+    _power_of_2 = 0
     while (_num % 2 == 0):
         _num = _num >> 1
-        _powers_of_2 = _powers_of_2 + 1
-    _next_collatz_number = (_num * 3 + 1) << _powers_of_2
+        _power_of_2 = _power_of_2 + 1
 
+    return _power_of_2
+
+
+def get_next_collatz_number(_num) -> int:
+    _power_of_two = get_power_of_two(_num)
+    _next_collatz_number = ((_num >> _power_of_two) * 3 + 1) << _power_of_two
     return _next_collatz_number
+
+
+def get_collatz_length(_num):
+    if _num == 0:
+        return 0
+    _striped_num = _num >> get_power_of_two(_num)
+    _collatz_length = 1
+    while _striped_num >> 1 != 0:
+        _striped_num = _striped_num >> 1
+        _collatz_length = _collatz_length + 1
+
+    return _collatz_length
 
 
 def collatz_sequence_investigation(_num):
     _line = 1
-    _collatz_length = len(_num) - len(_num.rstrip("0"))
-    while _collatz_length != 1:
+    while get_collatz_length(_num) != 1:
         _num = get_next_collatz_number(_num)
         _line = _line + 1
-        _collatz_length = len(_num) - len(_num.rstrip("0"))
 
-    _length = len(_num)
+    _length = get_power_of_two(_num) + 1
     return _line, _length
 
 
-def create_picture_of_collatz_sequence(_num, _additional_steps=0) -> str:
-    _name = _num
+def convert_number_to_binary_string(_num):
+    return str(bin(_num))[2:]
+
+
+def convert_binary_string_to_number(_binary_string):
+    return int("0b" + _binary_string, base=2)
+
+
+def create_picture_of_collatz_sequence(_num, _additional_steps=0):
+    _name = convert_number_to_binary_string(_num)
     _height, _width = collatz_sequence_investigation(_num)
     _picture_height = _height + _additional_steps
     _picture_width = _width + 2 * _additional_steps
     _picture_of_collatz_sequence = Image.new("1", (_picture_width, _picture_height), "white")
     for _row in range(_picture_height):
         if _row != 0:  # first row is the number itself
-            _num = get_next_collatz_number(_num)
+            _binary_num_string = get_next_collatz_number(_num)
 
-        _total_line = "0" * (_picture_width - len(_num)) + _num
+        _total_line = "0" * (_picture_width - len(_binary_num_string)) + _binary_num_string
 
         for _column in range(_picture_width):
             _picture_of_collatz_sequence.putpixel((_column, _row), 1 * (_total_line[_column] != "1"))
@@ -89,7 +106,7 @@ def create_picture_of_collatz_sequence(_num, _additional_steps=0) -> str:
     _picture_of_collatz_sequence.save(f"Collatz{_name}.bmp")
 
 
-def make_dict_of_max_collatz_steps_per_digit (begin_of_sequences, end_of_sequences):
+def make_dict_of_max_collatz_steps_per_digit(begin_of_sequences, end_of_sequences):
     path_cache = "local_cache_4.pck"
     sequence_of_max_every_digit = read_unique_dict(path_cache)
 
@@ -100,8 +117,8 @@ def make_dict_of_max_collatz_steps_per_digit (begin_of_sequences, end_of_sequenc
         print(f"Length {length} to be calculated")
         steps_equal_length = {}
         for j in range(1 << (length - 2)):
-            num = 1 << (length - 1) + j << 1 + 1
-            steps_equal_length[num] = (collatz_sequence_investigation(num)[0])
+            _num = 1 << (length - 1) + j << 1 + 1
+            steps_equal_length[_num] = (collatz_sequence_investigation(_num)[0])
 
         maximum_this_digit = max(steps_equal_length.values())
         _counter_max_each_digit = 1
@@ -118,4 +135,5 @@ def make_dict_of_max_collatz_steps_per_digit (begin_of_sequences, end_of_sequenc
 
 
 if __name__ == '__main__':
-   make_dict_of_max_collatz_steps_per_digit(25, 28)
+    result = convert_binary_string_to_number("111")
+    print(result)
