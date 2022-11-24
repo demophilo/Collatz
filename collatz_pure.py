@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
-import time
-
-from PIL import Image
-import os, sys
-from pathlib import Path
-from os.path import dirname
+import os
 import pickle as pkl
-import pandas as pd
+import time
+from os.path import dirname
+from pathlib import Path
+import numpy as np
+from PIL import Image
 
 
 def write_to_pickle(target, target_path):
@@ -47,7 +46,7 @@ def read_unique_dict(path):
 
 def get_next_collatz_number(_num) -> str:
     _trailing_zeros = len(_num) - len(_num.rstrip("0"))
-    _next_collatz_number = str(bin(3 * int("0b" + _num, 2) + 2 ** _trailing_zeros))[2:]
+    _next_collatz_number = str(bin(3 * int("0b" + _num, 2) + 1 << _trailing_zeros))[2:]
     return _next_collatz_number
 
 def get_next_collatz_number_2(_num):
@@ -56,15 +55,17 @@ def get_next_collatz_number_2(_num):
         _num = _num >> 1
         _powers_of_2 = _powers_of_2 + 1
     _next_collatz_number = (_num * 3 + 1) << _powers_of_2
-    _collatz_length = len(str(bin(_num))) - 2
-    return _next_collatz_number, _collatz_length
+
+    return _next_collatz_number
 
 
 def collatz_sequence_investigation(_num):
     _line = 1
-    while _num.count("1") != 1:
+    _collatz_length = len(_num) - len(_num.rstrip("0"))
+    while _collatz_length != 1:
         _num = get_next_collatz_number(_num)
         _line = _line + 1
+        _collatz_length = len(_num) - len(_num.rstrip("0"))
 
     _length = len(_num)
     return _line, _length
@@ -88,37 +89,33 @@ def create_picture_of_collatz_sequence(_num, _additional_steps=0) -> str:
     _picture_of_collatz_sequence.save(f"Collatz{_name}.bmp")
 
 
-def make_dict_of_max_collatz_steps_per_digit (begin_of_sequences, end_of_sequences) -> int:
-        path_cache = "local_cache_4.pck"
-        sequence_of_max_every_digit = read_unique_dict(path_cache)
+def make_dict_of_max_collatz_steps_per_digit (begin_of_sequences, end_of_sequences):
+    path_cache = "local_cache_4.pck"
+    sequence_of_max_every_digit = read_unique_dict(path_cache)
 
-        for length in range(begin_of_sequences, end_of_sequences + 1):
-            if length in sequence_of_max_every_digit:
-                print(f"Length {length} already calculated and its result is {sequence_of_max_every_digit.get(length)}")
-                continue
-            print(f"Length {length} to be calculated")
-            steps_equal_length = {}
-            for j in range(2 ** (length - 2)):
-                num = 2 ** (length - 1) + 2 * j + 1
-                steps_equal_length[num] = (collatz_sequence_investigation(num)[0])
+    for length in range(begin_of_sequences, end_of_sequences + 1):
+        if length in sequence_of_max_every_digit:
+            print(f"Length {length} already calculated and its result is {sequence_of_max_every_digit.get(length)}")
+            continue
+        print(f"Length {length} to be calculated")
+        steps_equal_length = {}
+        for j in range(1 << (length - 2)):
+            num = 1 << (length - 1) + j << 1 + 1
+            steps_equal_length[num] = (collatz_sequence_investigation(num)[0])
 
-            maximum_this_digit = max(steps_equal_length.values())
-            _counter_max_each_digit = 1
+        maximum_this_digit = max(steps_equal_length.values())
+        _counter_max_each_digit = 1
 
-            for _key, _value in steps_equal_length.items():
-                if _value == maximum_this_digit:
-                    print(length, int("0b" + _key, 2), _key, _value)
-                    sequence_of_max_every_digit[length] = {"max-length": maximum_this_digit, "number": _key,
-                                                           "2nd_max": _counter_max_each_digit}
-                    _counter_max_each_digit = _counter_max_each_digit + 1
+        for _key, _value in steps_equal_length.items():
+            if _value == maximum_this_digit:
+                print(length, int("0b" + _key, 2), _key, _value)
+                sequence_of_max_every_digit[length] = {"max-length": maximum_this_digit, "number": _key,
+                                                       "2nd_max": _counter_max_each_digit}
+                _counter_max_each_digit = _counter_max_each_digit + 1
 
-        print(sequence_of_max_every_digit)
-        write_to_pickle(sequence_of_max_every_digit, path_cache)
-
+    print(sequence_of_max_every_digit)
+    write_to_pickle(sequence_of_max_every_digit, path_cache)
 
 
 if __name__ == '__main__':
-    start = time.time()
-    make_dict_of_max_collatz_steps_per_digit(2,27)
-    end = time.time()
-    print(end - start)
+   make_dict_of_max_collatz_steps_per_digit(25, 28)
