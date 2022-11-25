@@ -89,21 +89,24 @@ def convert_binary_string_to_number(_binary_string):
 
 
 def create_picture_of_collatz_sequence(_num, _additional_steps=0):
-    _name = convert_number_to_binary_string(_num)
+    _filename = convert_number_to_binary_string(_num)
     _height, _width = collatz_sequence_investigation(_num)
     _picture_height = _height + _additional_steps
     _picture_width = _width + 2 * _additional_steps
     _picture_of_collatz_sequence = Image.new("1", (_picture_width, _picture_height), "white")
+    _collatz_number = _num
     for _row in range(_picture_height):
         if _row != 0:  # first row is the number itself
-            _binary_num_string = get_next_collatz_number(_num)
+            _collatz_number = get_next_collatz_number(_collatz_number)
+
+        _binary_num_string = convert_number_to_binary_string(_collatz_number)
 
         _total_line = "0" * (_picture_width - len(_binary_num_string)) + _binary_num_string
 
         for _column in range(_picture_width):
             _picture_of_collatz_sequence.putpixel((_column, _row), 1 * (_total_line[_column] != "1"))
 
-    _picture_of_collatz_sequence.save(f"Collatz{_name}.bmp")
+    _picture_of_collatz_sequence.save(f"Collatz{_filename}.bmp")
 
 
 def make_dict_of_max_collatz_steps_per_digit(begin_of_sequences, end_of_sequences):
@@ -135,5 +138,4 @@ def make_dict_of_max_collatz_steps_per_digit(begin_of_sequences, end_of_sequence
 
 
 if __name__ == '__main__':
-    result = convert_binary_string_to_number("111")
-    print(result)
+    create_picture_of_collatz_sequence(27)
