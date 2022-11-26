@@ -156,18 +156,4 @@ def get_numbers_with_longest_sequence_of_given_collatz_length(length):
 
 if __name__ == '__main__':
 
-    """length = 6
-    numbers_with_given_collatz_length = (((1 << (length - 1)) + 1) + 2 * i for i in range(0, 1 << (length - 2)))
-    numbers_with_longest_sequence = [[0, 0, 0]]
-    for number in numbers_with_given_collatz_length:
-        if collatz_sequence_investigation(number)[0] == numbers_with_longest_sequence[0][1]:
-            numbers_with_longest_sequence.append([number,
-                                                  collatz_sequence_investigation(number)[0],
-                                                  collatz_sequence_investigation(number)[1]])
-        elif collatz_sequence_investigation(number)[0] > numbers_with_longest_sequence[0][1]:
-            numbers_with_longest_sequence.clear()
-            numbers_with_longest_sequence.append([number,
-                                                  collatz_sequence_investigation(number)[0],
-                                                  collatz_sequence_investigation(number)[1]])
-"""
-    print(get_numbers_with_longest_sequence_of_given_collatz_length(6))
+
