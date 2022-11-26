@@ -139,14 +139,35 @@ def make_dict_of_max_collatz_steps_per_digit(begin_of_sequences, end_of_sequence
     write_to_pickle(sequence_of_max_every_digit, path_cache)
 
 
-
-
+def get_numbers_with_longest_sequence_of_given_collatz_length(length):
+    numbers_with_given_collatz_length = (((1 << (length - 1)) + 1) + 2 * i for i in range(0, 1 << (length - 2)))
+    numbers_with_longest_sequence = [[0, 0, 0]]
+    for number in numbers_with_given_collatz_length:
+        if collatz_sequence_investigation(number)[0] == numbers_with_longest_sequence[0][1]:
+            numbers_with_longest_sequence.append([number,
+                                                  collatz_sequence_investigation(number)[0],
+                                                  collatz_sequence_investigation(number)[1]])
+        elif collatz_sequence_investigation(number)[0] > numbers_with_longest_sequence[0][1]:
+            numbers_with_longest_sequence.clear()
+            numbers_with_longest_sequence.append([number,
+                                                  collatz_sequence_investigation(number)[0],
+                                                  collatz_sequence_investigation(number)[1]])
+    return numbers_with_longest_sequence
 
 if __name__ == '__main__':
 
-    print(collatz_sequence_investigation(3))
-
-    length = 6
+    """length = 6
     numbers_with_given_collatz_length = (((1 << (length - 1)) + 1) + 2 * i for i in range(0, 1 << (length - 2)))
+    numbers_with_longest_sequence = [[0, 0, 0]]
     for number in numbers_with_given_collatz_length:
-        print(number, collatz_sequence_investigation(number))
+        if collatz_sequence_investigation(number)[0] == numbers_with_longest_sequence[0][1]:
+            numbers_with_longest_sequence.append([number,
+                                                  collatz_sequence_investigation(number)[0],
+                                                  collatz_sequence_investigation(number)[1]])
+        elif collatz_sequence_investigation(number)[0] > numbers_with_longest_sequence[0][1]:
+            numbers_with_longest_sequence.clear()
+            numbers_with_longest_sequence.append([number,
+                                                  collatz_sequence_investigation(number)[0],
+                                                  collatz_sequence_investigation(number)[1]])
+"""
+    print(get_numbers_with_longest_sequence_of_given_collatz_length(6))
