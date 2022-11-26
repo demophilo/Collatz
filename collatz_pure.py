@@ -6,6 +6,7 @@ import time
 from os.path import dirname
 from pathlib import Path
 from PIL import Image
+import numpy as np
 
 
 def write_to_pickle(target, target_path):
@@ -77,7 +78,8 @@ def collatz_sequence_investigation(_num):
         _line = _line + 1
 
     _length = get_power_of_two(_num) + 1
-    return _line, _length
+
+    return np.array([_line, _length])
 
 
 def convert_number_to_binary_string(_num):
@@ -137,5 +139,14 @@ def make_dict_of_max_collatz_steps_per_digit(begin_of_sequences, end_of_sequence
     write_to_pickle(sequence_of_max_every_digit, path_cache)
 
 
+
+
+
 if __name__ == '__main__':
-    create_picture_of_collatz_sequence(27)
+
+    print(collatz_sequence_investigation(3))
+
+    length = 6
+    numbers_with_given_collatz_length = (((1 << (length - 1)) + 1) + 2 * i for i in range(0, 1 << (length - 2)))
+    for number in numbers_with_given_collatz_length:
+        print(number, collatz_sequence_investigation(number))
