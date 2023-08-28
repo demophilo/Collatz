@@ -6,15 +6,12 @@ Collatz:
 =#
 
 
-function collatz_sequence_length(n::Int)
+function collatz_sequence_length(n)
+    m::Int128 = n 
     count = 0
-    while n != 1
-        if n & 1 != 0
-            n = 3 * n + 1
-            count += 1
-        else
-            n >>= 1
-        end
+    while m != 1
+        m = ((m << 1) + m + 1) * (m & 1 != 0) + (m >> 1) * (m & 1 == 0)
+        count = count + (m & 1 != 0)
     end
     return count
 end
@@ -38,7 +35,7 @@ function max_sequence_length_in_given_collatz_length(binary_digits)
     return (longest_sequence_number1, longest_sequence_number2)
 end
 
-maxDigit = 34
+maxDigit = 40
 
 
 
