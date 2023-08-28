@@ -26,10 +26,11 @@ function max_sequence_length_in_given_collatz_length(binary_digits)
         sequence_length = collatz_sequence_length(i)
         if sequence_length > longest_sequence
             longest_sequence = sequence_length
-            longest_sequence_number1 = i
-            longest_sequence_number2 = 0;
+            longest_sequence_number1 = [i, sequence_length]
+
+            longest_sequence_number2 = [0,0];
         elseif sequence_length == longest_sequence
-            longest_sequence_number2 = i
+            longest_sequence_number2 = [i, sequence_length]
         end
     end
     return (longest_sequence_number1, longest_sequence_number2)
