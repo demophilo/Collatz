@@ -8,17 +8,7 @@ Collatz:
 
 
 
-function collatz_sequence_length(n::Int128)
-    m::Int128 = n
-    count = 0  # Die Variable count ist nicht explizit als BigInt definiert
 
-    while m != 1
-        m = ((m << 1) + m + 1) * (m & 1 != 0) + (m >> 1) * (m & 1 == 0)
-        count = count + (m & 1 != 0)
-    end
-
-    return count
-end
 
 function max_sequence_length_in_given_collatz_length(binary_digits)
     longest_sequence_number1 = []
