@@ -44,13 +44,13 @@ end
 
 function collatz_sequence_investigation(num::UInt128)
 	m::UInt128 = num
-    count_c_operator = 0
-	count_d_operator = 0
+    count_c_operator = 1
+	count_d_operator = 1
 
     while m != 1
-		count_c_operator = count_c_operator + (m & 1)
-		count_d_operator = count_d_operator + (m & 1 != 0)
-        m = (m & 1 != 0) * ((m << 1) + m + 1) + (m >> 1) * (m & 1 == 0)
+		count_c_operator = count_c_operator + (m & 1 != 0)
+		count_d_operator = count_d_operator + (m & 1 == 0)
+        m = (m & 1 != 0) * ((m << 1) + m + 1) + (m & 1 == 0) * (m >> 1)
     end
 
 	
