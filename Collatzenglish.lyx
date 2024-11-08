@@ -1,0 +1,928 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass amsart
+\begin_preamble
+\usepackage{listings}
+\usepackage{doi}
+\author{Karl Linek, Peter Ebelsberger}
+% Added by lyx2lyx
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children no
+\language american
+\language_package default
+\inputencoding auto-legacy
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style dinat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Higher Cycles in the (3x+1) Problem Disproved
+\end_layout
+
+\begin_layout Abstract
+The approach involves transforming the rules of the Collatz problem into a homologous system to gain insights that can then be verified algebraically.
+ In the first step,
+ the Collatz problem was generalized by extending the base set to binary rational numbers and transforming the (3x+1) operator.
+ This made the operators commutative.
+ In the second step,
+ the Collatz conjecture was reformulated to avoid the need for divisions.
+ In the third step,
+ the Collatz problem was transformed into the binary system.
+ By analyzing the progression of the leading digit in Collatz sequences,
+ it was proven that no higher cycles exist."
+\end_layout
+
+\begin_layout Section
+1 Introduction
+\end_layout
+
+\begin_layout Standard
+The (3x+1) problem consists of two cases that generate a Collatz sequence starting from any natural number greater than zero:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x_{n+1}:=\begin{cases}
+3x+1 & \textrm{wenn \ensuremath{x} ungerade ist}\\
+\frac{x}{2} & \textrm{wenn \ensuremath{x} gerade ist}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\in\mathbb{N^{*}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and a conjecture:
+\end_layout
+
+\begin_layout Conjecture
+Regardless of the starting number 
+\begin_inset Formula $𝑥$
+\end_inset
+
+,
+ the Collatz sequence will end in the infinite cycle 4-2-1.
+\end_layout
+
+\begin_layout Standard
+Despite its simple structure,
+ the conjecture has neither been proven nor disproven.
+ In theory,
+ the Collatz sequence could have two other outcomes.
+ It might end in an as-yet-unknown cycle with higher numbers,
+ or it could grow indefinitely.
+\end_layout
+
+\begin_layout Section
+Generalization
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Formula $(3x+1)$
+\end_inset
+
+calculation step (called the Collatz operator) and the division step (division operator) are not commutative.
+ If the division operator is applied before a Collatz operator on odd numbers,
+ the result is no longer within the base set of natural numbers.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+To make the operators commutative,
+ the problem was generalized.
+ The generalization consists of the following steps:
+\end_layout
+
+\begin_layout Subsection
+Extension of the Base Set
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+Every natural number is equivalent to the product of powers of two and the product of the remaining prime numbers:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x=y\cdot2^{n}$
+\end_inset
+
+ 
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Formula $y\in\mathbb{N^{*}}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $y\bmod2\neq0$
+\end_inset
+
+,
+ 
+\begin_inset Formula $n\in\mathbb{\mathbb{N}}\Rightarrow x\in\mathbb{\mathbb{N^{*}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By extending the domain of 
+\begin_inset Formula $n$
+\end_inset
+
+ from 
+\begin_inset Formula $\mathbb{N}$
+\end_inset
+
+ to 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+,
+ the domain of 
+\begin_inset Formula $x$
+\end_inset
+
+ is extended to 2-adic numbers 
+\begin_inset Formula $\mathbb{Q}_{2}^{+}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x=y\cdot2^{n}$
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Formula $y\in\mathbb{N^{*}}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $y\bmod2\neq0$
+\end_inset
+
+,
+ 
+\begin_inset Formula $n\in\mathbb{\mathbb{Z}}\Rightarrow x\in\mathbb{Q}_{2}^{+}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Adjustment of the Operators
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+The Collatz operator is adjusted to add the number of powers of two within the number,
+ rather than simply adding 1.
+ To avoid misunderstandings,
+ it is referred to as the C-operator:
+\end_layout
+
+\begin_layout Definition
+C-operator:
+ 
+\begin_inset Formula $C(y\cdot2^{n})\equiv3y\cdot2^{n}+2^{n}=(3y+1)\cdot2^{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The division operator was modified so that,
+ depending on the sign of 
+\begin_inset Formula $x$
+\end_inset
+
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ is either divided by 2,
+ multiplied by 2,
+ or remains unchanged.
+ To avoid misunderstandings,
+ it is referred to as the D-operator.
+\end_layout
+
+\begin_layout Definition
+D-operator:
+ 
+\begin_inset Formula $D(y\cdot2^{n})\equiv y\cdot2^{-\textrm{sgn}(n)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This generalization makes the two operators commutative.
+ 
+\begin_inset Formula $C(D(x))=D(C(x))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Proof:
+\end_layout
+
+\begin_layout Standard
+Case:
+ 
+\begin_inset Formula $n_{0}<0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C(D(x_{0}))=C(D(y_{0}\cdot2^{n_{0}}))=C(y_{0}\cdot2^{n_{0}+1})=3y_{0}\cdot2^{n_{0}+1}+2^{n_{0}+1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D(C(x_{0}))=D(C(y_{0}\cdot2^{n_{0}}))=D(3y_{0}\cdot2^{n_{0}}+2^{n_{0}})=3y_{0}\cdot2^{n_{0}+1}+2^{n_{0}+1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case:
+ 
+\begin_inset Formula $n_{0}>0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C(D(x_{0}))=C(D(y_{0}\cdot2^{n_{0}}))=C(y_{0}\cdot2^{n_{0}-1})=3y_{0}\cdot2^{n_{0}-1}+2^{n_{0}-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D(C(x_{0}))=D(C(y_{0}\cdot2^{n_{0}}))=D(3y_{0}\cdot2^{n_{0}}+2^{n_{0}})=3y_{0}\cdot2^{n_{0}-1}+2^{n_{0}-1}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Case 
+\begin_inset Formula $n_{0}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C(D(x_{0}))=C(D(y_{0}\cdot2^{n_{0}}))=C(y_{0}\cdot2^{n_{0}})=3y_{0}\cdot2^{n_{0}}+2^{n_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D(C(x_{0}))=D(C(y_{0}\cdot2^{n_{0}}))=D(3y_{0}\cdot2^{n_{0}}+2^{n_{0}})=3y_{0}\cdot2^{n_{0}}+2^{n_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Reformulation of the Conjecture
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+The commutative property allows us to apply all C-operators first,
+ and then all D-operators afterward.
+ By reformulating the conjecture,
+ it is no longer necessary to apply the D-operators:
+\end_layout
+
+\begin_layout Conjecture
+Regardless of the initial value 
+\begin_inset Formula $x=y\cdot2^{n}$
+\end_inset
+
+,
+ where 
+\begin_inset Formula $x\in\mathbb{Q}_{2}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $y\in\mathbb{N}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $y\bmod2\neq0$
+\end_inset
+
+,
+ 
+\begin_inset Formula $n\in\mathbb{Z}$
+\end_inset
+
+,
+ a finite number 
+\begin_inset Formula $v$
+\end_inset
+
+ of applications of the C-operator on 
+\begin_inset Formula $x$
+\end_inset
+
+ will result in 
+\begin_inset Formula $y$
+\end_inset
+
+ becoming equal to 1.
+ Thus,
+ 
+\begin_inset Formula $C^{(v)}(x)=2^{m}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The purpose of making the two operators commutative was solely to avoid needing to apply the D-operator.
+ Since the C-operators and D-operators can be applied in any order,
+ the term 'Collatz sequence' is no longer well-defined.
+ Therefore,
+ a new term,
+ the 'C-sequence,' is defined to ensure uniqueness:
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Definition
+A C-sequence of a number is obtained through the uninterrupted application of the C-operator.
+\end_layout
+
+\begin_layout Standard
+Das Kommutativgesetz erlaubt es,
+ zuerst alle C-Operatoren und erst dann alle D-Operatoren auszuführen.
+ Indem man die Vermutung umformuliert,
+ ist es nicht mehr notwendig,
+ die D-Operatoren auszuführen:
+\end_layout
+
+\begin_layout Conjecture
+Unabhängig vom Anfangswert 
+\begin_inset Formula $x=y\cdot2^{n}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $x\in\mathbb{Q}_{2}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $y\in\mathbb{N}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $y\bmod2\neq0$
+\end_inset
+
+,
+ 
+\begin_inset Formula $n\in\mathbb{Z}$
+\end_inset
+
+ führt eine endliche Anzahl 
+\begin_inset Formula $v$
+\end_inset
+
+ von Anwendungen des C\SpecialChar nobreakdash
+Operators auf 
+\begin_inset Formula $x$
+\end_inset
+
+ dazu,
+ dass 
+\begin_inset Formula $y$
+\end_inset
+
+ gleich 
+\begin_inset Formula $1$
+\end_inset
+
+ wird.
+ 
+\begin_inset Formula $C^{(v)}(x)=2^{m}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die beiden Operatoren kommutativ zu machen,
+ hatte nur den Sinn,
+ denn D-Operator nicht mehr ausführen zu müssen.
+ Da man die C-Operatoren und die D\SpecialChar nobreakdash
+Operatoren in beliebiger Reihenfolge anwenden kann,
+ ist der Begriff Collatzfolge nicht mehr eindeutig.
+ Daher wird Begriff C-Folge definiert,
+ der eindeutig ist:
+\end_layout
+
+\begin_layout Definition
+Eine C-Folge einer Zahl ergibt sich durch ununterbrochene Anwendung des C-Operators.
+\end_layout
+
+\begin_layout Section
+Transfer ins Binärsystem
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset Graphics
+	filename ../../SynologyDrive/perl5/Collatz110111.bmp
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Die bildliche Darstellung der Binärzahl 
+\begin_inset Formula $110111$
+\end_inset
+
+ und ihrer C-Folgenglieder über das Abbruchkriterium hinaus.
+ Man erkennt,
+ dass sich die Steigung der führenden 
+\begin_inset Formula $1$
+\end_inset
+
+ von ca.
+ 
+\begin_inset Formula $1,585\approx\log_{2}3$
+\end_inset
+
+ Stellen pro C-Operator auf exakt 
+\begin_inset Formula $2$
+\end_inset
+
+ Stellen pro C-Operator verändert,
+ wenn die Collatzlänge 
+\begin_inset Formula $1$
+\end_inset
+
+ erreicht ist.
+ Der rechte Bildrand ist jeweils die Stelle das Kommas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Die Verallgemeinerung hat zwar die Erleichterung gebracht,
+ den D-Operator nicht mehr durchführen zu müssen,
+ aber es bringt auch das Problem mit sich,
+ überprüfen zu müssen,
+ ob eine ganzzahlige Potenz von 2 erreicht ist.
+\end_layout
+
+\begin_layout Standard
+Eine Brute-Force-Methode könnte das Ergebnis mit einer Folge der Potenzen von 
+\begin_inset Formula $2$
+\end_inset
+
+ vergleichen.
+ Dazu muss man nicht nur eine Potenz von 
+\begin_inset Formula $2$
+\end_inset
+
+ berechnen,
+ sondern auch noch die Folge der Zweierpotenzen so lange durchgehen,
+ bis man feststellt,
+ dass das Ergebnis kleiner oder gleich eines Gliedes ist.
+ Das ist zeitaufwendiger,
+ als den D-Operator sofort anzuwenden.
+\end_layout
+
+\begin_layout Standard
+Alternativ könnte man mit Hilfe des Logarithmus zur Basis 2 nehmen und überprüfen,
+ ob das Ergebnis ganzzahlig ist.
+ Das erfordert jedoch den Einsatz einer transzendenten Funktion,
+ welche per definitionem irgendwann abgebrochen werden muss.
+ Dies könnte jedoch Scheinlösungen liefern.
+\end_layout
+
+\begin_layout Standard
+Im vorliegenden Ansatz werden nicht nur die Regeln,
+ sondern auch die Vermutung in das Binärsystem transformiert.
+ Im Binärsystem hat jede ganzzahlige Potenz von 
+\begin_inset Formula $2$
+\end_inset
+
+ eine einzige Ziffer 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Es genügt festzustellen,
+ ob die Anzahl der Ziffern 
+\begin_inset Formula $1$
+\end_inset
+
+ größer als 
+\begin_inset Formula $1$
+\end_inset
+
+ ist oder nicht.
+ Der Einsatz der transzendenten Funktion Logarithmus oder ein Vergleich des Ergebnisses mit der Folge der Zweierpotenzen erübrigt sich.
+\end_layout
+
+\begin_layout Standard
+Durch den Transfer ins Binärsystem lassen sie C-Folgen bildlich darstellen
+\end_layout
+
+\begin_layout Section
+Begrifflichkeiten
+\end_layout
+
+\begin_layout Definition
+Zwei Zahlen 
+\begin_inset Formula $x_{1}=y_{1}\cdot2^{n_{1}}$
+\end_inset
+
+ und 
+\begin_inset Formula $x_{2}=y_{2}\cdot2^{n_{2}}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $y_{x_{1}},\:y_{x_{2}}\in\mathbb{N};y_{1}\bmod2\neq0,y\bmod2\neq0;\:n_{1},\:n_{2}\in\mathbb{Z}$
+\end_inset
+
+ sind collatzident,
+ wenn 
+\begin_inset Formula $y_{1}=y_{2}$
+\end_inset
+
+.
+ Als Zeichen der Collatzidentität wird 
+\begin_inset Formula $\stackrel{C}{=}$
+\end_inset
+
+ benutzt.
+\end_layout
+
+\begin_layout Standard
+Diese Definition ist zwar unabhängig vom Zahlensystem,
+ aber im Binärsystem ändert sich die Collatzidentität nicht,
+ wenn man das Komma verschiebt.
+\end_layout
+
+\begin_layout Standard
+Beispiele im Binärsystem:
+ 
+\begin_inset Formula $101_{2}\overset{C}{=}1010_{2}\overset{C}{=}101000_{2}\overset{C}{=}1,01_{2}$
+\end_inset
+
+.
+ Die gleiche Beziehung im Dezimalsystem:
+ 
+\begin_inset Formula $5\overset{C}{=}10\overset{C}{=}40\overset{C}{=}1,25$
+\end_inset
+
+.
+ Dagegen sind z.
+\begin_inset space \thinspace{}
+\end_inset
+
+B.
+ die Zahlen 
+\begin_inset Formula $50,$
+\end_inset
+
+
+\begin_inset Formula $5$
+\end_inset
+
+ und 
+\begin_inset Formula $0,5$
+\end_inset
+
+ des Dezimalsystems nicht collatzident.
+ Daher ist es vorteilhaft Untersuchungen im Binärsystem vorzunehmen.
+ 
+\end_layout
+
+\begin_layout Definition
+Die Collatzlänge 
+\begin_inset Formula $L_{C}$
+\end_inset
+
+ einer Zahl ist die Anzahl ihrer Ziffern im Binärsystem von der führenden Eins bis zur letzten Eins einschließlich.
+\end_layout
+
+\begin_layout Lemma
+Wenn man auf zwei collatzidente Zahlen die gleiche Anzahl an C-Operatoren anwendet,
+ sind beide Ergebnisse wieder Collatzident.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $a\overset{C}{=}b\Rightarrow C^{(n)}(a)\overset{C}{=}C^{(n)}(b)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Dadurch lässt sich sie Collatzvermutung abermals anders formulieren:
+\end_layout
+
+\begin_layout Conjecture
+Jede C-Folge konvergiert nach endlich vielen Schritten gegen die Collatzlänge 1.
+\end_layout
+
+\begin_layout Standard
+Mit Hilfe dieser Formulierung der Vermutung ist es möglich,
+ das Abbruchkriterium ohne D-Operatoren,
+ ohne Vergleich mit einer Folge von Zweierpotenzen und ohne Logarithmen zu bestimmen.
+\end_layout
+
+\begin_layout Section
+Beweis gegen höhere Zyklen
+\end_layout
+
+\begin_layout Enumerate
+Damit es einen Zyklus in einer C-Folge gibt,
+ muss gelten:
+ 
+\begin_inset Formula $x_{2}\overset{C}{=}C^{(n)}(x_{1})$
+\end_inset
+
+.
+ Da 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ und 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ collatzident sein müssen,
+ muss gelten 
+\begin_inset Formula $\frac{x_{2}}{x_{1}}=2^{d}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Daraus folgen 
+\begin_inset Formula $\frac{C^{(n)}(x_{1})}{x_{1}}=2^{d}$
+\end_inset
+
+ und 
+\begin_inset Formula $\log_{2}\frac{C^{(n)}(x_{1})}{x_{1}}=d$
+\end_inset
+
+.
+ Der durchschnittliche Fortschritt pro C-Operator ist daher 
+\begin_inset Formula $\frac{d}{n}$
+\end_inset
+
+.
+ Dieser Fortschritt gilt nicht nur für einen Durchgang eines Zyklus,
+ sondern das muss auch der Grenzwert gegen unendlich für die C-Folge sein:
+ 
+\begin_inset Formula $\underset{v\rightarrow\infty}{\lim}\frac{v\cdot\log_{2}(\frac{C^{(n)}(x_{1})}{x_{1}})}{v}=d$
+\end_inset
+
+.
+ Daher ist die Bedingung für einen Zyklus,
+ dass ein rationales Argument eines Zweierlogarithmus einen rationalen Wert ergibt.
+\end_layout
+
+\begin_layout Enumerate
+Pro Anwendung eines Collatzoperators wird das Folgeglied auf das 3-fache (exklusiv) bis 4-fache (inklusive) größer.
+ Das entspricht einem durchschnittlichen Fortschritt der Stellen im Binärsystem von 
+\begin_inset Formula $\log_{2}3\approx1,585$
+\end_inset
+
+ bis 
+\begin_inset Formula $\log_{2}4=2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+In diesem Wertebereich gibt es nur einen Zweierlogarithmus,
+ der bei einem rationalen Argument ein rationales Ergebnis liefert und das ist 
+\begin_inset Formula $\log_{2}4=2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Daher kann es nur einen Zyklus geben und das ist der bekannte Zyklus.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement document
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../../SynologyDrive/perl5/Collatz1101101111101110101110011101010010011011101001111101011101111.bmp
+	width 17cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Die Zahl 
+\begin_inset Formula $1980976057694878447_{10}$
+\end_inset
+
+ ist der Rekordhalter bis 
+\begin_inset Formula $10^{18}$
+\end_inset
+
+.
+ Sie hat die Collatzlänge 
+\begin_inset Formula $61$
+\end_inset
+
+ und lautet binär:
+\begin_inset Formula $1101101111101110101110011101010010011011101001111101011101111_{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
