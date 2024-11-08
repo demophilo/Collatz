@@ -178,8 +178,8 @@ Der
 \begin_inset Formula $(3x+1)$
 \end_inset
 
--Rechenschritt (im folgenden Text C-Operator genannt) und der Divisionsschritt (D-Operator) sind nicht kommutativ.
- Würde man den D-Operator vor einem C-Operator bei ungeraden Zahlen ausführen,
+-Rechenschritt (Collatz-Operator genannt) und der Divisionsschritt (Divisions-Operator) sind nicht kommutativ.
+ Würde man den Divisions-Operator vor einem Collatz-Operator bei ungeraden Zahlen ausführen,
  ist das Ergebnis nicht mehr in der Grundmenge der natürlichen Zahlen enthalten.
 \end_layout
 
@@ -277,15 +277,18 @@ Anpassung der Operatoren
 \end_layout
 
 \begin_layout Standard
-Der C-Operator wird derart verändert,
+Der Collatz-Operator wird derart verändert,
  dass anstatt einer 
 \begin_inset Formula $1$
 \end_inset
 
- die in der Zahl der enthaltenen Zweipotenzen addiert werden:
+ die in der Zahl der enthaltenen Zweipotenzen addiert werden.
+ Um Missverständnisse zu vermeiden wird er C-Operator genannt:
 \end_layout
 
 \begin_layout Definition
+C-Opertor:
+ 
 \begin_inset Formula $C(y\cdot2^{n})\equiv3y\cdot2^{n}+2^{n}=(3y+1)\cdot2^{n}$
 \end_inset
 
@@ -293,7 +296,7 @@ Der C-Operator wird derart verändert,
 \end_layout
 
 \begin_layout Standard
-Der D-Operator wurde dahingehend verändert,
+Der Divisions-Operator wurde dahingehend verändert,
  dass abhängig vom Vorzeichen von 
 \begin_inset Formula $x$
 \end_inset
@@ -303,9 +306,12 @@ Der D-Operator wurde dahingehend verändert,
 \end_inset
 
  durch 2 dividiert oder mit 2 multipliziert wird oder gleich bleibt.
+ Um Missverständnisse zu vermeiden wird er D-Operator genannt
 \end_layout
 
 \begin_layout Definition
+D-Operator:
+ 
 \begin_inset Formula $D(y\cdot2^{n})\equiv y\cdot2^{-\textrm{sgn}(n)}$
 \end_inset
 
@@ -497,7 +503,7 @@ Die bildliche Darstellung der Binärzahl
 \begin_inset Formula $110111$
 \end_inset
 
- und ihrer C-Folge über das Abbruchkriterium hinaus.
+ und ihrer C-Folgenglieder über das Abbruchkriterium hinaus.
  Man erkennt,
  dass sich die Steigung der führenden 
 \begin_inset Formula $1$
@@ -671,7 +677,7 @@ Die Collatzlänge
 \end_layout
 
 \begin_layout Lemma
-Wenn man auf zwei collatzidente Zahlen dies gleiche Anzahl an C-Operatoren anwendet,
+Wenn man auf zwei collatzidente Zahlen die gleiche Anzahl an C-Operatoren anwendet,
  sind beide Ergebnisse wieder Collatzident.
 \begin_inset Newline newline
 \end_inset
@@ -702,7 +708,7 @@ Beweis gegen höhere Zyklen
 \end_layout
 
 \begin_layout Enumerate
-Damit es einen Zyklus in einer Collatzfolge gibt,
+Damit es einen Zyklus in einer C-Folge gibt,
  muss gelten:
  
 \begin_inset Formula $x_{2}=C^{(n)}(x_{1})$
