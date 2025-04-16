@@ -68,6 +68,17 @@ function save_binary_image(matrix::Array{Int, 2}, filename::String)
 	end
 	save(filename, img)
 end
+
+function convert_number_to_binary_vector(num::UInt128)::Vector{Int}
+    binary_string = bitstring(num)
+    binary_vector = [parse(Int, c) for c in binary_string if c != ' ']
+    return binary_vector
+end
+
+# Beispielaufruf
+num = UInt128(42)
+binary_vector = convert_number_to_binary_vector(num)
+println(binary_vector)  # Ausgabe: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0]
 end # module Collatz_julia
 #=
 using .Collatz_julia

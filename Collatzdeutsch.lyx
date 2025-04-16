@@ -127,31 +127,17 @@ Einleitung
 \end_layout
 
 \begin_layout Standard
-Das (3x+1)-Problem besteht aus zwei Fällen,
- die eine Collatzfolge,
- ausgehend von einer beliebigen natürlichen Zahl größer als Null,
- erzeugen:
+Eine Collatzfolge wird wie folgt erzeuget:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula $x_{n+1}:=\begin{cases}
 3x+1 & \textrm{wenn \ensuremath{x} ungerade ist}\\
 \frac{x}{2} & \textrm{wenn \ensuremath{x} gerade ist}
-\end{cases}$
+\end{cases}\;\forall x\in\mathbb{N^{*}}$
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $x\in\mathbb{N^{*}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-und einer Vermutung:
 \end_layout
 
 \begin_layout Conjecture
@@ -163,10 +149,38 @@ Unabhängig von der Anfangszahl
 \end_layout
 
 \begin_layout Standard
-Trotz ihres simplen Aufbaus konnte die Vermutung weder bewiesen noch widerlegt werden.
- Die Collatzfolge könnte theoretisch zwei andere Ausgänge haben.
+Die Collatzfolge könnte theoretisch zwei andere Ausgänge haben.
  Sie könnte in einen noch unbekannten Zyklus mit höheren Zahlen münden oder sie könnte unendlich wachsen.
- 
+\end_layout
+
+\begin_layout Section
+Stand der Wissenschaft
+\end_layout
+
+\begin_layout Standard
+Trotz ihres simplen Aufbaus konnte die bisher Vermutung weder bewiesen noch widerlegt werden.
+ Feinstein
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand citet
+after "1-2"
+key "feinstein_collatz_2003"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ meint bewiesen zu haben,
+ dass der Beweis unmöglich wäre.
+ Im Folgenden wird bewiesen,
+ dass es keine höhren Zyklen geben kann.
 \end_layout
 
 \begin_layout Section
@@ -206,7 +220,7 @@ Jede natürliche Zahl ist dem Produkt der Zweierpotenzen und dem Produkt der res
 \end_inset
 
 
-\begin_inset Formula $y\in\mathbb{N^{*}}$
+\begin_inset Formula $y\in\mathbb{N}$
 \end_inset
 
 ,
@@ -216,7 +230,7 @@ Jede natürliche Zahl ist dem Produkt der Zweierpotenzen und dem Produkt der res
 
 ,
  
-\begin_inset Formula $n\in\mathbb{\mathbb{N}}\Rightarrow x\in\mathbb{\mathbb{N^{*}}}$
+\begin_inset Formula $n\in\mathbb{\mathbb{N}}\Rightarrow x\in\mathbb{N}$
 \end_inset
 
 
@@ -240,7 +254,7 @@ Indem die Definitionsmenge von
 \begin_inset Formula $x$
 \end_inset
 
- auf 2-adische Zahlen 
+ auf die 2-adische Zahlen 
 \begin_inset Formula $\mathbb{Q}_{2}$
 \end_inset
 
@@ -256,7 +270,7 @@ Indem die Definitionsmenge von
 \end_inset
 
 
-\begin_inset Formula $y\in\mathbb{N^{*}}$
+\begin_inset Formula $y\in\mathbb{N}$
 \end_inset
 
 ,
@@ -283,7 +297,8 @@ Der Collatz-Operator wird derart verändert,
 \end_inset
 
  die in der Zahl der enthaltenen Zweipotenzen addiert werden.
- Um Missverständnisse zu vermeiden wird er C-Operator genannt:
+ Um Missverständnisse zu vermeiden wird der neue,
+ verallgemeinderte Operator C-Operator genannt:
 \end_layout
 
 \begin_layout Definition
@@ -298,15 +313,12 @@ C-Opertor:
 \begin_layout Standard
 Der Divisions-Operator wurde dahingehend verändert,
  dass abhängig vom Vorzeichen von 
-\begin_inset Formula $x$
-\end_inset
-
- 
 \begin_inset Formula $n$
 \end_inset
 
  durch 2 dividiert oder mit 2 multipliziert wird oder gleich bleibt.
- Um Missverständnisse zu vermeiden wird er D-Operator genannt
+ Um Missverständnisse zu vermeiden wird der neue,
+ verallgemeinderte Operator D-Operator genannt:
 \end_layout
 
 \begin_layout Definition
@@ -331,67 +343,76 @@ Diese Verallgemeinerung macht die beiden Operatoren kommutativ:
 Beweis:
 \end_layout
 
-\begin_layout Standard
-Fall 
-\begin_inset Formula $n_{0}<0$
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Fall
+\begin_inset space ~
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $C(D(x_{0}))=C(D(y_{0}\cdot2^{n_{0}}))=C(y_{0}\cdot2^{n_{0}+1})=3y_{0}\cdot2^{n_{0}+1}+2^{n_{0}+1}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $D(C(x_{0}))=D(C(y_{0}\cdot2^{n_{0}}))=D(3y_{0}\cdot2^{n_{0}}+2^{n_{0}})=3y_{0}\cdot2^{n_{0}+1}+2^{n_{0}+1}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Fall 
-\begin_inset Formula $n_{0}>0$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $C(D(x_{0}))=C(D(y_{0}\cdot2^{n_{0}}))=C(y_{0}\cdot2^{n_{0}-1})=3y_{0}\cdot2^{n_{0}-1}+2^{n_{0}-1}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $D(C(x_{0}))=D(C(y_{0}\cdot2^{n_{0}}))=D(3y_{0}\cdot2^{n_{0}}+2^{n_{0}})=3y_{0}\cdot2^{n_{0}-1}+2^{n_{0}-1}$
+\begin_inset Formula $n<0$
 \end_inset
 
  
-\end_layout
+\begin_inset Formula $C(D(x))=C(D(y\cdot2^{n}))=C(y\cdot2^{n+1})=3y\cdot2^{n+1}+2^{n+1}$
+\end_inset
 
-\begin_layout Standard
-Fall 
-\begin_inset Formula $n_{0}=0$
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $D(C(x))=D(C(y\cdot2^{n}))=D(3y\cdot2^{n}+2^{n})=3y\cdot2^{n+1}+2^{n+1}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula $C(D(x_{0}))=C(D(y_{0}\cdot2^{n_{0}}))=C(y_{0}\cdot2^{n_{0}})=3y_{0}\cdot2^{n_{0}}+2^{n_{0}}$
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Fall
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $n>0$
+\end_inset
+
+ 
+\begin_inset Formula $C(D(x))=C(D(y\cdot2^{n}))=C(y\cdot2^{n-1})=3y\cdot2^{n-1}+2^{n-1}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $D(C(x))=D(C(y\cdot2^{n}))=D(3y\cdot2^{n}+2^{n})=3y\cdot2^{n-1}+2^{n-1}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula $D(C(x_{0}))=D(C(y_{0}\cdot2^{n_{0}}))=D(3y_{0}\cdot2^{n_{0}}+2^{n_{0}})=3y_{0}\cdot2^{n_{0}}+2^{n_{0}}$
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Fall
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $n=0$
+\end_inset
+
+ 
+\begin_inset Formula $C(D(x))=C(D(y\cdot2^{n}))=C(y\cdot2^{n})=3y\cdot2^{n}+2^{n}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $D(C(x))=D(C(y\cdot2^{n}))=D(3y\cdot2^{n}+2^{n})=3y\cdot2^{n}+2^{n}$
 \end_inset
 
 
@@ -405,7 +426,7 @@ Neuformulierung des Abbruchkriteriums
 Das Kommutativgesetz erlaubt es,
  zuerst alle C-Operatoren und erst dann alle D-Operatoren auszuführen.
  Indem man die Vermutung umformuliert,
- ist es nicht mehr notwendig,
+ ist es gar nicht mehr notwendig,
  die D-Operatoren auszuführen:
 \end_layout
 
@@ -452,7 +473,7 @@ Operators auf
 \begin_inset Formula $1$
 \end_inset
 
- wird.
+ wird:
  
 \begin_inset Formula $C^{(v)}(x)=2^{m}$
 \end_inset
@@ -593,7 +614,7 @@ Im vorliegenden Ansatz werden nicht nur die Regeln,
 \end_layout
 
 \begin_layout Standard
-Durch den Transfer ins Binärsystem lassen sie C-Folgen bildlich darstellen
+Durch den Transfer ins Binärsystem lassen sich C-Folgen bildlich darstellen.
 \end_layout
 
 \begin_layout Section
@@ -631,10 +652,7 @@ Zwei Zahlen
 Diese Definition ist zwar unabhängig vom Zahlensystem,
  aber nur im Binärsystem ändert sich die Collatzidentität nicht,
  wenn man das Komma verschiebt.
-\end_layout
-
-\begin_layout Standard
-Beispiele im Binärsystem:
+ Beispiele im Binärsystem:
  
 \begin_inset Formula $101_{2}\overset{C}{=}1010_{2}\overset{C}{=}101000_{2}\overset{C}{=}1,01_{2}$
 \end_inset
@@ -677,6 +695,14 @@ Die Collatzlänge
 \end_layout
 
 \begin_layout Lemma
+Zwei collatzidente Zahlen haben die gleiche Collatzlänge.
+\end_layout
+
+\begin_layout Standard
+Daraus ergibt sich:
+\end_layout
+
+\begin_layout Lemma
 Wenn man auf zwei collatzidente Zahlen die gleiche Anzahl an C-Operatoren anwendet,
  sind beide Ergebnisse wieder Collatzident.
 \begin_inset Newline newline
@@ -711,76 +737,114 @@ Beweis gegen höhere Zyklen
 Damit es einen Zyklus in einer C-Folge gibt,
  muss gelten:
  
-\begin_inset Formula $x_{2}=C^{(n)}(x_{1})$
+\begin_inset Formula $x_{n+m}=C^{(m)}(x_{n})$
+\end_inset
+
+ 
+\begin_inset Formula $\land$
+\end_inset
+
+ 
+\begin_inset Formula $x_{n+m}\overset{C}{=}x_{n}$
 \end_inset
 
 .
- Da 
-\begin_inset Formula $x_{1}$
+ 
+\begin_inset Formula $m$
 \end_inset
 
- und 
-\begin_inset Formula $x_{2}$
-\end_inset
-
- collatzident sein müssen,
- muss gelten 
-\begin_inset Formula $\frac{x_{2}}{x_{1}}=2^{d}$
-\end_inset
-
-
+ ist die Periodenlänge des Zyklus.
+ 
 \end_layout
 
 \begin_layout Enumerate
-Daraus folgen 
-\begin_inset Formula $\frac{C^{(n)}(x_{1})}{x_{1}}=2^{d}$
+Aus der Collatzidentität folgt
+\begin_inset Formula 
+\begin{eqnarray}
+x_{n+m} & = & x_{n}2^{\frac{d}{m}}\nonumber \\
+\log_{2}\frac{x_{n+m}}{x_{n}} & = & \frac{d}{m}\label{eq:1}
+\end{eqnarray}
+
 \end_inset
 
- und 
-\begin_inset Formula $\log_{2}\frac{C^{(n)}(x_{1})}{x_{1}}=d$
-\end_inset
 
-.
- Der durchschnittliche Fortschritt pro C-Operator ist daher 
-\begin_inset Formula $\frac{d}{n}$
-\end_inset
-
-.
- Dieser Fortschritt gilt nicht nur für einen Durchgang eines Zyklus,
- sondern das muss auch der Grenzwert gegen unendlich für die C-Folge sein:
- 
-\begin_inset Formula $\underset{v\rightarrow\infty}{\lim}\frac{v\cdot\log_{2}(\frac{C^{(n)}(x_{1})}{x_{1}})}{v}=d$
-\end_inset
-
-.
- Daher ist die Bedingung für einen Zyklus,
- dass ein rationales Argument eines Zweierlogarithmus einen rationalen Wert ergibt.
 \end_layout
 
 \begin_layout Enumerate
 Pro Anwendung eines Collatzoperators wird das Folgeglied auf das 3-fache (exklusiv) bis 4-fache (inklusive) größer.
- Das entspricht einem durchschnittlichen Fortschritt der Stellen im Binärsystem von 
-\begin_inset Formula $\log_{2}3\approx1,585$
+ In diesem Bereich muss auch 
+\begin_inset Formula $\frac{x_{n+m}}{x_{n}}$
 \end_inset
 
- bis 
-\begin_inset Formula $\log_{2}4=2$
-\end_inset
-
-
+ liegen.
 \end_layout
 
 \begin_layout Enumerate
-In diesem Wertebereich gibt es nur einen Zweierlogarithmus,
- der bei einem rationalen Argument ein rationales Ergebnis liefert und das ist 
-\begin_inset Formula $\log_{2}4=2$
+Aus Gleichung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:1"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
 \end_inset
 
-.
+ folgt,
+ dass als Bedingung für einen Zyklus gilt,
+ dass der Zweierlogarithmus eines rationalen Arguments,
+ welches zwichen 3 und 4 liegt,
+ ein rationales Resultat liefert.
 \end_layout
 
 \begin_layout Enumerate
-Daher kann es nur einen Zyklus geben und das ist der bekannte Zyklus.
+In diesem Bereich gibt es ein Argument.
+ Dies ist die Zahl 4.
+\end_layout
+
+\begin_layout Enumerate
+Da das das einzige Argument ist,
+ auf den das zutrifft,
+ gibt es nur einen Zyklus und das ist der bekannte Zyklus.
+\end_layout
+
+\begin_layout Section
+Ausblick
+\end_layout
+
+\begin_layout Standard
+Es gibt verschiedene Aspekte für weitere Untersuchungen der Collatz-Vermutung.
+ Folgende Betrachtungen folgen unserer Meinung nach aus unseren Untersuchungen und sind möglicherweise hilfreich,
+ den Beweis der Collatzvermutung zu schließen.
+\end_layout
+
+\begin_layout Subsection
+Binärer Ansatz
+\end_layout
+
+\begin_layout Standard
+Wenn man den D-Operator anwendet,
+ wird Information zerstört.
+ Eine Analyse wird damit erschwert.
+ Die Tranformation der Zahlen ins Binärsystem und die Darstellung als Pixelgrafik ist homolog 
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "Collatz2024"
+options "bibtotoc,dinat"
+encoding "default"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -794,7 +858,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../../SynologyDrive/perl5/Collatz1101101111101110101110011101010010011011101001111101011101111.bmp
-	width 17cm
+	width 14cm
 
 \end_inset
 
