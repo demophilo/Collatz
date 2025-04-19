@@ -792,14 +792,15 @@ nolink "false"
 \end_inset
 
  folgt,
- dass als Bedingung für einen Zyklus gilt,
+ dass Bedingung für einen Zyklus ist,
  dass der Zweierlogarithmus eines rationalen Arguments,
  welches zwichen 3 und 4 liegt,
  ein rationales Resultat liefert.
 \end_layout
 
 \begin_layout Enumerate
-In diesem Bereich gibt es ein Argument.
+In diesem Bereich gibt es ein Argument,
+ welches die Bedingung erfüllt.
  Dies ist die Zahl 4.
 \end_layout
 
